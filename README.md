@@ -18,7 +18,34 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+client = Datacash::Client.new(
+  datacash_client: "ABC1234",
+  datacash_password: "29389q8iajf",
+  datacash_endpoint: "http://localhost:4000",
+)
+
+session_request = Datacash::SessionRequest.new(
+  client: client
+  datacash_page_set_id: 0,
+  datacash_3d_secure_enabled: false
+)
+
+session_request.order_number = order.order_number
+
+session_request.add_order_line(
+  code: order_line.reference,
+)
+
+response = session_request.perform! # => Datacash::Response
+
+if response.payment_url
+  # off to the payment url to erm pay
+else
+  "OMG site broke!"
+end
+```
+
 
 ## Contributing
 

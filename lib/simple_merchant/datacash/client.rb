@@ -2,12 +2,12 @@ module SimpleMerchant
   module Datacash
     class Client
       def initialize(options={})
-        @client      = options.fetch(:client)
-        @password    = options.fetch(:password)
-        @endpoint    = options.fetch(:endpoint)
-        @rest_client = options.fetch(:rest_client, RestClient)
+        @datacash_client   = options.fetch(:datacash_client)
+        @datacash_password = options.fetch(:datacash_password)
+        @datacash_endpoint = options.fetch(:datacash_endpoint)
+        @rest_client       = options.fetch(:rest_client, RestClient)
       rescue KeyError => e
-        raise ArgumentError, "Missing configuration - #{e}"
+        raise ArgumentError, "Missing option - #{e}"
       end
 
       def request(&block)
@@ -23,7 +23,10 @@ module SimpleMerchant
       end
 
       private
-      attr_reader :client, :password, :endpoint, :rest_client
+      attr_reader :datacash_client, 
+                  :datacash_password, 
+                  :datacash_endpoint, 
+                  :rest_client
 
       def send_to_datacash(xml_string)
         rest_client.post(endpoint, :body => xml_string)
@@ -43,8 +46,8 @@ module SimpleMerchant
         xml.instruct!
         xml.tag! :Request do
           xml.tag! :Authentication do
-            xml.tag! :client,   client
-            xml.tag! :password, PASSWORD
+            xml.tag! :client,   datacash_client
+            xml.tag! :password, datacash_password
           end
           xml.tag! :Transaction do
             yield(xml)
