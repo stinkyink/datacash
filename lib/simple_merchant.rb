@@ -1,5 +1,5 @@
 require "simple_merchant/version"
 
 module SimpleMerchant
-  # Your code goes here...
+  autoload :Datacash, 'simple_merchant/datacash'
 end
