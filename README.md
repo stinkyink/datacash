@@ -1,4 +1,4 @@
-# SimpleMerchant
+# Simple Merchant
 
 TODO: Write a gem description
 

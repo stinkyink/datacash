@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'simple_merchant/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "simple_merchant"
+  spec.name          = "Simple Merchant"
   spec.version       = SimpleMerchant::VERSION
   spec.authors       = ["Robert Williams", "Richard Grundy"]
   spec.email         = ["rob@r-williams.com", "richguk@gmail.com"]
@@ -20,4 +20,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec"
 end
