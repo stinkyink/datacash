@@ -6,6 +6,8 @@ module SimpleMerchant
         @password    = options.fetch(:password)
         @endpoint    = options.fetch(:endpoint)
         @rest_client = options.fetch(:rest_client, RestClient)
+      rescue KeyError => e
+        raise ArgumentError, "Missing configuration - #{e}"
       end
 
       def request(&block)
