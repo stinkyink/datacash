@@ -35,7 +35,6 @@ module SimpleMerchant
       #attempts.flatten!
 
       #for attempt in attempts
-
       #if order.order_payments.where('datacash_reference = ?', attempt['datacash_reference']).count == 0
 
       #if attempt['reason'] == 'ACCEPTED'

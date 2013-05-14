@@ -1,7 +1,6 @@
 # Simple Merchant
 
 Please don't use this yet, I'm just coming up with ideas at the moment so please don't consider it production code :)
-TODO: Write a gem description
 
 ## Installation
 
