@@ -1,28 +1,49 @@
+require 'date'
+require 'libxml'
+
 module SimpleMerchant
   module Datacash
     class Response
 
-      def initialize(response)
-        @response = response
+      COMMON_FIELDS = [
+        :datacash_reference,
+        :status,
+        :information,
+        :reason,
+        :time,
+        :mode,
+      ]
+
+      attr_reader *COMMON_FIELDS
+
+      def initialize(xml)
+        @xml = xml
+
+        COMMON_FIELDS.each do |field| 
+          populate_from_xml(field) 
+        end
       end
 
-      # This states if the http request is successful
-      # not if a transaction is.
-      def successful?
-        @response.code == 200
+      def time
+        Time.at(@time.to_i).utc
       end
 
-      def data
-        @response['Response']
-      end
+      private
+        attr_reader :xml
 
-      def status
-        data['status'].to_i
-      end
+        def xml_response
+          unless @xml_response
+            document      = LibXML::XML::Parser.string(xml).parse
+            @xml_response = document.find_first("//Response")
+          end
+          @xml_response
+        end
 
-      def reference
-        data['datacash_reference']
-      end
+        def populate_from_xml(field_name, var_name=nil)
+          var_name = field_name if var_name.nil?
+          node     = xml_response.find_first("//#{field_name}")
+          instance_variable_set(:"@#{var_name}", node.content) if node
+        end
     end
   end
 end
