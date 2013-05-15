@@ -1,19 +1,21 @@
+require 'rest_client'
+require 'builder'
+
 module SimpleMerchant
   module Datacash
     class Client
+
+      ENDPOINTS = {
+        live: "https://mars.transaction.datacash.com/Transaction",
+        test: "https://accreditation.datacash.com/Transaction/cnp_a"
+      }
+
       def initialize(options={})
-        @datacash_client   = options.fetch(:datacash_client)
-        @datacash_password = options.fetch(:datacash_password)
-        @datacash_endpoint = options.fetch(:datacash_endpoint)
-        @rest_client       = options.fetch(:rest_client, RestClient)
+        @client      = options.fetch(:client)
+        @password    = options.fetch(:password)
+        @environment = options.fetch(:environment, :test)
       rescue KeyError => e
         raise ArgumentError, "Missing option - #{e}"
-      end
-
-      def request(&block)
-        Response.new(
-          send_to_datacash(xml_wrapper {|xml| yield(xml)})
-        )
       end
 
       def query(datacash_reference)
@@ -22,32 +24,45 @@ module SimpleMerchant
         )
       end
 
-      private
-      attr_reader :datacash_client, 
-                  :datacash_password, 
-                  :datacash_endpoint, 
-                  :rest_client
-
-      def send_to_datacash(xml_string)
-        rest_client.post(endpoint, :body => xml_string)
+      def request(&block)
+        Response.new(
+          send_to_datacash(xml_wrapper {|xml| yield(xml)})
+        )
       end
 
-      def query_xml(datacash_reference)
+      private
+      attr_reader :client, 
+                  :password, 
+                  :environment
+
+      def rest_client
+        RestClient
+      end
+
+      def endpoint
+        ENDPOINTS[environment]
+      end
+
+      def send_to_datacash(xml_string)
+        rest_client.post(endpoint, xml_string, content_type: :xml, accept: :xml)
+      end
+
+      def query_xml(reference)
         xml_wrapper do |xml|
           xml.tag! :HistoricTxn do
             xml.tag! :method, 'query'
-            xml.tag! :reference, datacash_reference
+            xml.tag! :reference, reference
           end
         end
       end
 
       def xml_wrapper
-        xml = Builder::XmlMarkup.new :indent => 2
+        xml = Builder::XmlMarkup.new
         xml.instruct!
         xml.tag! :Request do
           xml.tag! :Authentication do
-            xml.tag! :client,   datacash_client
-            xml.tag! :password, datacash_password
+            xml.tag! :client,   client
+            xml.tag! :password, password
           end
           xml.tag! :Transaction do
             yield(xml)
