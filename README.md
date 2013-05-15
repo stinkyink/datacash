@@ -1,4 +1,4 @@
-# Simple Merchant
+# Datacash
 
 Please don't use this yet, I'm just coming up with ideas at the moment so please don't consider it production code :)
 
@@ -6,7 +6,7 @@ Please don't use this yet, I'm just coming up with ideas at the moment so please
 
 Add this line to your application's Gemfile:
 
-    gem 'simple_merchant'
+    gem 'datacash'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install simple_merchant
+    $ gem install datacash
 
 ## Usage
 

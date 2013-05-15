@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'simple_merchant/version'
+require 'datacash/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "Simple Merchant"
-  spec.version       = SimpleMerchant::VERSION
+  spec.name          = "Datacash"
+  spec.version       = Datacash::VERSION
   spec.authors       = ["Robert Williams", "Richard Grundy"]
   spec.email         = ["rob@r-williams.com", "richguk@gmail.com"]
   spec.description   = %q{TODO: Write a gem description}
