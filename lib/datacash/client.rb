@@ -1,5 +1,6 @@
 require 'rest_client'
 require 'builder'
+require 'multi_xml'
 
 module Datacash
   class Client
@@ -7,12 +8,13 @@ module Datacash
     ENDPOINTS = {
       live: "https://mars.transaction.datacash.com/Transaction",
       test: "https://accreditation.datacash.com/Transaction/cnp_a"
-    }
+    }.freeze
 
     def initialize(options={})
       @client      = options.fetch(:client)
       @password    = options.fetch(:password)
       @environment = options.fetch(:environment, :test)
+      @rest_client = options.fetch(:rest_client, RestClient)
     rescue KeyError => e
       raise ArgumentError, "Missing option - #{e}"
     end
@@ -30,20 +32,22 @@ module Datacash
     end
 
     private
-    attr_reader :client, 
-      :password, 
-      :environment
-
-    def rest_client
-      RestClient
-    end
+    attr_reader :rest_client, :client, :password, :environment
 
     def endpoint
       ENDPOINTS[environment]
     end
 
     def send_to_datacash(xml_string)
-      rest_client.post(endpoint, xml_string, content_type: :xml, accept: :xml)
+      MultiXml.parse(
+        rest_client.post(
+          endpoint,
+          xml_string, 
+          content_type: :xml, 
+          accept: :xml
+        ),
+        symbolize_keys: true
+      )["Response"]
     end
 
     def query_xml(reference)

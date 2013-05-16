@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "builder", "~> 2.0"
+  spec.add_dependency "hashie"
   spec.add_dependency "multi_xml", "~> 0.5.3"
   spec.add_dependency "rest-client", "~> 1.6"
 
