@@ -7,4 +7,10 @@ module Datacash
       true
     end
   end
+
+  class NilResponse
+    def success?
+      false
+    end
+  end
 end

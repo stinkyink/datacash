@@ -44,6 +44,8 @@ module Datacash
         ),
         symbolize_keys: true
       )["Response"])
+    rescue RestClient::Exception
+      NilResponse.new
     end
 
     def query_xml(reference)
