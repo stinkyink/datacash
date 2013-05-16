@@ -20,15 +20,11 @@ module Datacash
     end
 
     def query(datacash_reference)
-      Response.new(
-        send_to_datacash(query_xml(datacash_reference))
-      )
+      get_response_from_datacash(query_xml(datacash_reference))
     end
 
     def request(&block)
-      Response.new(
-        send_to_datacash(xml_wrapper {|xml| yield(xml)})
-      )
+      get_response_from_datacash(xml_wrapper {|xml| yield(xml)})
     end
 
     private
@@ -38,8 +34,8 @@ module Datacash
       ENDPOINTS[environment]
     end
 
-    def send_to_datacash(xml_string)
-      MultiXml.parse(
+    def get_response_from_datacash(xml_string)
+      Response.new(MultiXml.parse(
         rest_client.post(
           endpoint,
           xml_string, 
@@ -47,7 +43,7 @@ module Datacash
           accept: :xml
         ),
         symbolize_keys: true
-      )["Response"]
+      )["Response"])
     end
 
     def query_xml(reference)
