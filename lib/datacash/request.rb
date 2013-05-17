@@ -1,5 +1,3 @@
-require 'hashie/extensions/structure'
-
 module Datacash
 
   TIME_FORMAT = '%Y%m%d %H:%M:%S'
@@ -38,14 +36,14 @@ module Datacash
   class ThreeDSecure < RequestNode
     root "ThreeDSecure"
 
+    coerce_key :browser, Browser
+
     def initialize(*args)
       self[:verify]            = 'yes'
       self[:purchase_desc]     = '*/*'
       self[:purchase_datetime] = Time.now.strftime(TIME_FORMAT)
       super
     end
-
-    coerce_key :browser, Browser
   end
 
   class TransactionDetails < RequestNode

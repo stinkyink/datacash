@@ -1,15 +1,15 @@
 module Datacash 
   class SessionRequest
-    def initialize(options = {})
-      @client                     = options.fetch(:client)
-      @datacash_page_set_id       = options.fetch(:datacash_page_set_id, 0)
-      @datacash_3d_secure_enabled = options.fetch(:datacash_3d_secure_enabled, true)
-    rescue KeyError => e
-      raise ArgumentError, "Missing option - #{e}"
-    end
+    #def initialize(options = {})
+      #@client                     = options.fetch(:client)
+      #@datacash_page_set_id       = options.fetch(:datacash_page_set_id, 0)
+      #@datacash_3d_secure_enabled = options.fetch(:datacash_3d_secure_enabled, true)
+    #rescue KeyError => e
+      #raise ArgumentError, "Missing option - #{e}"
+    #end
 
-    private
-    attr_reader :client
+    #private
+    #attr_reader :client
 
     #belongs_to :order
 
