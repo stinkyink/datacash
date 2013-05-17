@@ -20,24 +20,18 @@ Or install it yourself as:
 
 ```ruby
 client = Datacash::Client.new(
-  datacash_client: "ABC1234",
-  datacash_password: "29389q8iajf",
-  datacash_endpoint: "http://localhost:4000",
+  client: "ABC1234",
+  password: "29389q8iajf",
+  environment: :live
 )
 
-session_request = Datacash::SessionRequest.new(
-  client: client
-  datacash_page_set_id: 0,
-  datacash_3d_secure_enabled: false
+session_request = Datacash::HPSSessionRequest.new(
+  page_set: 0,
+  3d_secure: false,
+  third_man: false
 )
 
-session_request.order_number = order.order_number
-
-session_request.add_order_line(
-  code: order_line.reference,
-)
-
-response = session_request.perform! # => Datacash::Response
+response = client.post(session_request) # => Datacash::Response
 
 if response.payment_url
   # off to the payment url to erm pay
@@ -45,7 +39,6 @@ else
   "OMG site broke!"
 end
 ```
-
 
 ## Contributing
 

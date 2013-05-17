@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "builder", "~> 2.0"
   spec.add_dependency "hashie"
+  spec.add_dependency "activesupport"
   spec.add_dependency "multi_xml", "~> 0.5.3"
   spec.add_dependency "rest-client", "~> 1.6"
 
