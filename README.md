@@ -28,7 +28,10 @@ client = Datacash::Client.new(
 session_request = Datacash::HPSSessionRequest.new(
   page_set: 0,
   3d_secure: false,
-  third_man: false
+  third_man: false,
+  merchant_url: "http://yoursite.com",
+  return_url: "http://yoursite.com/thankyou",
+  expiry_url: "http://yoursite.com/omgtryagain"
 )
 
 response = client.post(session_request) # => Datacash::Response

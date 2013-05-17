@@ -38,9 +38,12 @@ module Datacash
   class ThreeDSecure < RequestNode
     root "ThreeDSecure"
 
-    key verify: 'yes'
-    key purchase_desc: 'goods'
-    key purchase_datetime: lambda { Time.now.strftime(TIME_FORMAT) }
+    def initialize(*args)
+      self[:verify]            = 'yes'
+      self[:purchase_desc]     = '*/*'
+      self[:purchase_datetime] = Time.now.strftime(TIME_FORMAT)
+      super
+    end
 
     coerce_key :browser, Browser
   end
@@ -61,6 +64,11 @@ module Datacash
 
   class HpsTransaction < RequestNode
     root "HpsTxn"
+
+    def initialize(*args)
+      self[:method] = 'setup_full'
+      super
+    end
   end
 
   class HistoricTransaction < RequestNode
@@ -87,6 +95,12 @@ module Datacash
     coerce_key :authentication, Authentication
     coerce_key :transaction, Transaction
 
+    def initialize
+      self[:authentication] = {}
+      self[:transaction] = {}
+      super
+    end
+
     def add_authentication(options = {})
       self[:authentication] ||= {}
       self[:authentication][:client]   = options.fetch(:client)
@@ -99,7 +113,11 @@ module Datacash
       @page_set       = options.fetch(:page_set, false)
       @three_d_secure = options.fetch(:three_d_secure, false)
       @third_man      = options.fetch(:third_man, false)
+      @return_url     = options.fetch(:return_url)
+      @expiry_url     = options.fetch(:expiry_url)
+      @merchant_url   = options.fetch(:merchant_url) if third_man
       @request        = Request.new
+      build_hps_transaction
     end
 
     def to_xml(options = {})
@@ -107,9 +125,20 @@ module Datacash
     end
 
     private
-    attr_reader :request
+    attr_reader :page_set, 
+                :three_d_secure, 
+                :third_man,
+                :merchant_url,
+                :return_url, 
+                :expiry_url,
+                :request
 
-    def set_default_request_attributes
+    def build_hps_transaction
+      request[:transaction][:hps_transaction] = {
+        page_set_id: page_set,
+        return_url: return_url,
+        expiry_url: expiry_url
+      }
     end
   end
 end
