@@ -8,7 +8,7 @@ module Datacash
     end
   end
 
-  class NilResponse
+  class NilResponse < Response
     def success?
       false
     end

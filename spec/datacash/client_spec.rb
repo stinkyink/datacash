@@ -34,15 +34,11 @@ describe Datacash::Client do
         rest_client.stub(:post).and_return(response_xml)
       end
 
-      it "should return a Response object" do
-        subject.should be_kind_of(Datacash::Response)
-      end
-
       it "should be a success" do
         subject.should be_success
       end
-
     end
+
     context "with a bad response" do
       before do
         rest_client.stub(:post).and_raise(RestClient::Exception)
