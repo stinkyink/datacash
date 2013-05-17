@@ -52,8 +52,24 @@ module Datacash
     coerce_key :three_d_secure, ThreeDSecure
   end
 
+  class Cv2Avs < RequestNode
+    root "Cv2Avs"
+  end
+
+  class Card < RequestNode
+    root "Card"
+
+    coerce_key :cv2avs, Cv2Avs
+  end
+
   class CardTransaction < RequestNode
     root "CardTxn"
+
+    def initialize(*args)
+      self[:method]            = 'auth'
+      super
+    end
+    coerce_key :card, Card
   end
 
   class PaypalTransaction < RequestNode
