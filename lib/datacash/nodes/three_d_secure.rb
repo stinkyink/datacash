@@ -1,4 +1,5 @@
-
+module Datacash
+  module Nodes
     class ThreeDSecure < Node
       root "ThreeDSecure"
 
@@ -11,3 +12,5 @@
         super
       end
     end
+  end
+end
