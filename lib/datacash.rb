@@ -11,7 +11,3 @@ require 'datacash/nodes/hps_transaction'
 require 'datacash/client'
 require 'datacash/response'
 require 'datacash/request'
-
-
-module Datacash
-end
