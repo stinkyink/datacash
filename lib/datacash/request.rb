@@ -41,7 +41,7 @@ module Datacash
 
       def initialize(*args)
         self[:verify]            = 'yes'
-        self[:purchase_desc]     = '*/*'
+        self[:purchase_desc]     = 'goods'
         self[:purchase_datetime] = Time.now.strftime(TIME_FORMAT)
         super
       end
