@@ -53,10 +53,6 @@ module Datacash
       coerce_key :card, Card
     end
 
-    class PaypalTransaction < Node
-      root "PayPalTxn"
-    end
-
     class HistoricTransaction < Node
       root "HpsTxn"
     end
@@ -66,7 +62,6 @@ module Datacash
 
       coerce_key :transaction_details, TransactionDetails
       coerce_key :card_transaction, CardTransaction
-      coerce_key :paypal_transaction, PaypalTransaction
       coerce_key :hps_transaction, HpsTransaction
       coerce_key :historic_transaction, HistoricTransaction
     end
