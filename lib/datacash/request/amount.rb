@@ -1,6 +1,6 @@
 module Datacash
   module Request
-    class Amount < Node
+    class Amount < Base
       root 'amount'
 
       def initialize(*args)

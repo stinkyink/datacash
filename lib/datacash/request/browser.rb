@@ -1,6 +1,6 @@
 module Datacash
   module Request
-    class Browser < Node
+    class Browser < Base
       root "Browser"
 
       def initialize(*args)

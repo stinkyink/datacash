@@ -1,6 +1,6 @@
 module Datacash
   module Request
-    class HpsTransaction < Node
+    class HpsTransaction < Base
       root "HpsTxn"
 
       def initialize(*args)

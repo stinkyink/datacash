@@ -1,6 +1,6 @@
 module Datacash
   module Request
-    class Transaction < Node
+    class Transaction < Base
       root "Transaction"
 
       coerce_key :transaction_details, TransactionDetails

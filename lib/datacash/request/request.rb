@@ -1,6 +1,6 @@
 module Datacash
   module Request
-    class Request < Node
+    class Request < Base
       root "Request"
 
       coerce_key :authentication, Authentication

@@ -1,6 +1,6 @@
 module Datacash
   module Request
-    class Authentication < Node
+    class Authentication < Base
       root "Authentication"
     end
   end

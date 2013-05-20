@@ -1,6 +1,6 @@
 module Datacash
   module Request
-    class Card < Node
+    class Card < Base
       root "Card"
 
       coerce_key :cv2avs, Cv2Avs

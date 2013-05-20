@@ -1,6 +1,6 @@
 module Datacash
   module Request
-    class Node < Hash
+    class Base < Hash
       include Hashie::Extensions::Coercion
       include Hashie::Extensions::MergeInitializer
       include Hashie::Extensions::Structure

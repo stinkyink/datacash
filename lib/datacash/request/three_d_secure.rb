@@ -1,6 +1,6 @@
 module Datacash
   module Request
-    class ThreeDSecure < Node
+    class ThreeDSecure < Base
       root "ThreeDSecure"
 
       coerce_key :browser, Browser

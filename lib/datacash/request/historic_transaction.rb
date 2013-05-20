@@ -1,6 +1,6 @@
 module Datacash
   module Request
-    class HistoricTransaction < Node
+    class HistoricTransaction < Base
       root "HpsTxn"
     end
   end

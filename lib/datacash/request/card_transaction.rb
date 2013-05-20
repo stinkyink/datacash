@@ -1,6 +1,6 @@
 module Datacash
   module Request
-    class CardTransaction < Node
+    class CardTransaction < Base
       root "CardTxn"
 
       def initialize(*args)
