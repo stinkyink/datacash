@@ -33,4 +33,26 @@ describe Datacash::Nodes::Request do
       end
     end
   end
+
+  describe "adding authentication" do
+
+    context "with the correct arguments" do
+      before do
+        subject.add_authentication(client: "FRED", password: "PASSWORD123")
+      end
+
+      it "should add authentication to the request" do
+        subject[:authentication][:client].should eq("FRED")
+        subject[:authentication][:password].should eq("PASSWORD123")
+      end
+    end
+
+    it "should raise KeyError unless client is set" do
+      expect { subject.add_authentication(password: "PASSWORD123") }.to raise_error(KeyError)
+    end
+
+    it "should raise an KeyError unless password is set" do
+      expect { subject.add_authentication(client: "FRED") }.to raise_error(KeyError)
+    end
+  end
 end
