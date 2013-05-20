@@ -3,26 +3,6 @@ module Datacash
   TIME_FORMAT = '%Y%m%d %H:%M:%S'
 
   module Nodes
-    class Node < Hash
-      include Hashie::Extensions::Coercion
-      include Hashie::Extensions::MergeInitializer
-      include Hashie::Extensions::Structure
-
-      def self.root(name=nil)
-        @root = name if name
-        @root
-      end
-
-      def to_xml(options = {})
-        super(options.merge(
-          root: self.class.root,
-          skip_types: true,
-          indent: 0,
-          dasherize: false
-        ))
-      end
-    end
-
     class Browser < Node
       root "Browser"
 
@@ -75,15 +55,6 @@ module Datacash
 
     class PaypalTransaction < Node
       root "PayPalTxn"
-    end
-
-    class HpsTransaction < Node
-      root "HpsTxn"
-
-      def initialize(*args)
-        self[:method] = 'setup_full'
-        super
-      end
     end
 
     class HistoricTransaction < Node
