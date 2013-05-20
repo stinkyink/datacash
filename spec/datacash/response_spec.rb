@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe Datacash::Response do
 
-  subject do
-    described_class.new(attributes)
-  end
-
   context "with main response attributes" do
+
+    subject do
+      described_class.new(attributes)
+    end
 
     let(:attributes) do
       {
@@ -31,6 +31,18 @@ describe Datacash::Response do
 
     it "should have a time" do
       subject.time.to_i.should eq(1368627820)
+    end
+  end
+
+  describe "#success?" do
+    it "should be true if status is set to 1" do
+      subject.status = 1
+      subject.should be_success
+    end
+
+    it "should be false if status is not set to 1" do
+      subject.status = 0
+      subject.should_not be_success
     end
   end
 end

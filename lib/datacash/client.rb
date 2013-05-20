@@ -1,7 +1,3 @@
-require 'rest_client'
-require 'builder'
-require 'multi_xml'
-
 module Datacash
   class Client
 
@@ -26,8 +22,6 @@ module Datacash
         accept: :xml
       )
       Response.new(parse_response_to_hash(response_data))
-    rescue RestClient::Exception
-      NilResponse.new
     end
 
     private

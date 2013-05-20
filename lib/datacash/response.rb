@@ -1,13 +1,8 @@
 module Datacash
   class Response < Hashie::Mash
-    def success?
-      true
-    end
-  end
 
-  class NilResponse < Response
     def success?
-      false
+      status.to_i == 1
     end
   end
 end
