@@ -15,6 +15,7 @@ module Datacash
 
   module Nodes
     autoload :Node,                 'datacash/nodes/node'
+    autoload :Amount,               'datacash/nodes/amount'
     autoload :Authentication,       'datacash/nodes/authentication'
     autoload :Browser,              'datacash/nodes/browser'
     autoload :Card,                 'datacash/nodes/card'
