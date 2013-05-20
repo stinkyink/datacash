@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Datacash::Nodes::Amount do
+describe Datacash::Request::Amount do
 
   describe "#to_xml" do
     subject do 

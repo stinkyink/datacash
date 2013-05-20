@@ -13,19 +13,19 @@ module Datacash
   autoload :Client,   'datacash/client'
   autoload :Response, 'datacash/response'
 
-  module Nodes
-    autoload :Node,                 'datacash/nodes/node'
-    autoload :Amount,               'datacash/nodes/amount'
-    autoload :Authentication,       'datacash/nodes/authentication'
-    autoload :Browser,              'datacash/nodes/browser'
-    autoload :Card,                 'datacash/nodes/card'
-    autoload :Cv2Avs,               'datacash/nodes/cv2avs'
-    autoload :CardTransaction,      'datacash/nodes/card_transaction'
-    autoload :HistoricTransaction,  'datacash/nodes/historic_transaction'
-    autoload :HpsTransaction,       'datacash/nodes/hps_transaction'
-    autoload :Request,              'datacash/nodes/request'
-    autoload :ThreeDSecure,         'datacash/nodes/three_d_secure'
-    autoload :Transaction,          'datacash/nodes/transaction'
-    autoload :TransactionDetails,   'datacash/nodes/transaction_details'
+  module Request
+    autoload :Node,                 'datacash/request/node'
+    autoload :Amount,               'datacash/request/amount'
+    autoload :Authentication,       'datacash/request/authentication'
+    autoload :Browser,              'datacash/request/browser'
+    autoload :Card,                 'datacash/request/card'
+    autoload :Cv2Avs,               'datacash/request/cv2avs'
+    autoload :CardTransaction,      'datacash/request/card_transaction'
+    autoload :HistoricTransaction,  'datacash/request/historic_transaction'
+    autoload :HpsTransaction,       'datacash/request/hps_transaction'
+    autoload :Request,              'datacash/request/request'
+    autoload :ThreeDSecure,         'datacash/request/three_d_secure'
+    autoload :Transaction,          'datacash/request/transaction'
+    autoload :TransactionDetails,   'datacash/request/transaction_details'
   end
 end

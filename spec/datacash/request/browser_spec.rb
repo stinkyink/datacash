@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Datacash::Nodes::Browser do
+describe Datacash::Request::Browser do
 
   describe "#to_xml" do
     subject { MultiXml.parse(described_class.new.to_xml) }

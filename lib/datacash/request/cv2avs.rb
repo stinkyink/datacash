@@ -1,5 +1,5 @@
 module Datacash
-  module Nodes
+  module Request
     class Cv2Avs < Node
       root "Cv2Avs"
     end

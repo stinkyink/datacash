@@ -1,5 +1,5 @@
 module Datacash
-  module Nodes
+  module Request
     class TransactionDetails < Node
       root "TxnDetails"
 

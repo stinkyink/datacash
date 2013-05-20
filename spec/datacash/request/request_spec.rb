@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Datacash::Nodes::Request do
+describe Datacash::Request::Request do
 
   describe "#to_xml" do
     subject { MultiXml.parse(described_class.new.to_xml) }
@@ -16,7 +16,7 @@ describe Datacash::Nodes::Request do
 
       it "should be an Authentication instance" do
         subject[:authentication].should be_kind_of(
-          Datacash::Nodes::Authentication
+          Datacash::Request::Authentication
         )
       end
     end
@@ -28,7 +28,7 @@ describe Datacash::Nodes::Request do
 
       it "should be an Authentication instance" do
         subject[:transaction].should be_kind_of(
-          Datacash::Nodes::Transaction
+          Datacash::Request::Transaction
         )
       end
     end

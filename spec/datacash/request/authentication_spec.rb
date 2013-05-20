@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Datacash::Nodes::Authentication do
+describe Datacash::Request::Authentication do
 
   describe "#to_xml" do
     subject { MultiXml.parse(described_class.new.to_xml) }

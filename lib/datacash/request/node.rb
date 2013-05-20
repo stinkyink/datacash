@@ -1,5 +1,5 @@
 module Datacash
-  module Nodes
+  module Request
     class Node < Hash
       include Hashie::Extensions::Coercion
       include Hashie::Extensions::MergeInitializer

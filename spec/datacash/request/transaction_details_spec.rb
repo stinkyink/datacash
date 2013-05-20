@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Datacash::Nodes::TransactionDetails do
+describe Datacash::Request::TransactionDetails do
 
   describe "#to_xml" do
     subject { MultiXml.parse(described_class.new.to_xml) }
@@ -16,7 +16,7 @@ describe Datacash::Nodes::TransactionDetails do
 
       it "should be a ThreeDSecure instance" do
         subject[:three_d_secure].should be_kind_of(
-          Datacash::Nodes::ThreeDSecure
+          Datacash::Request::ThreeDSecure
         )
       end
     end

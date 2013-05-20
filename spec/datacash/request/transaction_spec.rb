@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Datacash::Nodes::Transaction do
+describe Datacash::Request::Transaction do
 
   describe "#to_xml" do
     subject { MultiXml.parse(described_class.new.to_xml) }
@@ -16,7 +16,7 @@ describe Datacash::Nodes::Transaction do
 
       it "should be a TransactionDetails instance" do
         subject[:transaction_details].should be_kind_of(
-          Datacash::Nodes::TransactionDetails
+          Datacash::Request::TransactionDetails
         )
       end
     end

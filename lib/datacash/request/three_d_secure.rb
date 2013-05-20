@@ -1,5 +1,5 @@
 module Datacash
-  module Nodes
+  module Request
     class ThreeDSecure < Node
       root "ThreeDSecure"
 

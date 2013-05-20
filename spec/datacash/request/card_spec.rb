@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Datacash::Nodes::Card do
+describe Datacash::Request::Card do
 
   describe "#to_xml" do
     subject { MultiXml.parse(described_class.new.to_xml) }
@@ -16,7 +16,7 @@ describe Datacash::Nodes::Card do
 
       it "should be a Cv2Avs instance" do
         subject[:cv2avs].should be_kind_of(
-          Datacash::Nodes::Cv2Avs
+          Datacash::Request::Cv2Avs
         )
       end
     end

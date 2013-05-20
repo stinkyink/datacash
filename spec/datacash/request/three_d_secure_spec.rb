@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Datacash::Nodes::ThreeDSecure do
+describe Datacash::Request::ThreeDSecure do
 
   describe "#to_xml" do
     subject { MultiXml.parse(described_class.new.to_xml) }

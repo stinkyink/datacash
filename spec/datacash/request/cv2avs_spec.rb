@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Datacash::Nodes::Cv2Avs do
+describe Datacash::Request::Cv2Avs do
 
   describe "#to_xml" do
     subject { MultiXml.parse(described_class.new.to_xml) }
