@@ -14,17 +14,18 @@ module Datacash
     end
 
     def post(request)
-      request.add_authentication(client: client, password: client)
+      prepare_request(request)
+
       response_data = rest_client.post(
         endpoint,
         request.to_xml, 
         content_type: :xml, 
         accept: :xml
       )
+
       response = Response.new(parse_response_to_hash(response_data))
-      if response.reason == "Invalid CLIENT/PASS"
-        raise AuthenticationError
-      end
+      raise AuthenticationError if response.reason == "Invalid CLIENT/PASS"
+      response
     end
 
     private
@@ -36,6 +37,10 @@ module Datacash
 
     def endpoint
       ENDPOINTS[environment]
+    end
+
+    def prepare_request(request)
+      request.add_authentication(client: client, password: client)
     end
   end
 end
