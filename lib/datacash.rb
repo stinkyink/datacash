@@ -6,6 +6,7 @@ require 'date'
 require 'active_support/core_ext/hash/conversions'
 require 'hashie/extensions/structure'
 
+require 'datacash/exceptions'
 
 module Datacash
   TIME_FORMAT = '%Y%m%d %H:%M:%S'

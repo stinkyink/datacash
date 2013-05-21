@@ -21,7 +21,10 @@ module Datacash
         content_type: :xml, 
         accept: :xml
       )
-      Response.new(parse_response_to_hash(response_data))
+      response = Response.new(parse_response_to_hash(response_data))
+      if response.reason == "Invalid CLIENT/PASS"
+        raise AuthenticationError
+      end
     end
 
     private
