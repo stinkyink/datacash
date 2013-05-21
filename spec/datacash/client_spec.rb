@@ -38,4 +38,37 @@ describe Datacash::Client, "#post" do
       expect { subject.post(Datacash::Request::Request.new)}.to raise_error(Datacash::AuthenticationError)
     end
   end
+
+  context "response containing an array of elements" do
+    let(:response) do
+      '<?xml version="1.0" encoding="UTF-8"?>'\
+      '<Response>'\
+      '<HpsTxn>'\
+      '<AuthAttempts>'\
+      '<Attempt>'\
+      '<datacash_reference>1</datacash_reference>'\
+      '<dc_response>1</dc_response>'\
+      '<reason>ACCEPTED</reason>'\
+      '</Attempt>'\
+      '<Attempt>'\
+      '<datacash_reference>2</datacash_reference>'\
+      '<dc_response>1</dc_response>'\
+      '<reason>ACCEPTED</reason>'\
+      '</Attempt>'\
+      '</AuthAttempts>'\
+      '</HpsTxn>'\
+      '<reason></reason>'\
+      '</Response>'
+    end
+
+    before do 
+      stub_request(:post, "https://accreditation.datacash.com/Transaction/cnp_a").
+        to_return(:status => 200, :body => response)
+    end
+    
+    it "should return all the elements" do
+      response = subject.post(Datacash::Request::Request.new)
+      puts response[:hps_transaction][:auth_attempts][:attempt].length.should eq(2)
+    end
+  end
 end
