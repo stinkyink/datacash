@@ -13,6 +13,5 @@ describe Datacash::Request::ThreeDSecure do
   it "should have defaults" do
     subject[:verify].should eq('yes')
     subject[:purchase_desc].should eq('goods')
-    fail "Need to mock out purchase_datetime"
   end
 end
