@@ -11,6 +11,16 @@ describe Datacash::Client, "#post" do
 
   context "when not authenticated" do
 
+    let(:request) do
+      '<?xml version="1.0" encoding="UTF-8"?>'\
+      '<Request>'\
+      '<Authentication>'\
+      '<client>TEST</client><password>PASSWORD123</password>'\
+      '</Authentication>'\
+      '<Transaction></Transaction>'\
+      '</Request>'
+    end
+
     let(:response) do
       '<?xml version="1.0" encoding="UTF-8"?>'\
       '<Response>'\
@@ -20,6 +30,7 @@ describe Datacash::Client, "#post" do
 
     before do 
       stub_request(:post, "https://accreditation.datacash.com/Transaction/cnp_a").
+        with(body: request).
         to_return(:status => 200, :body => response)
     end
 
