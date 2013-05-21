@@ -14,9 +14,9 @@ module Datacash
   autoload :Response, 'datacash/response'
 
   module Request
-    autoload :Node,                 'datacash/request/node'
     autoload :Amount,               'datacash/request/amount'
     autoload :Authentication,       'datacash/request/authentication'
+    autoload :Base,                 'datacash/request/base'
     autoload :Browser,              'datacash/request/browser'
     autoload :Card,                 'datacash/request/card'
     autoload :Cv2Avs,               'datacash/request/cv2avs'

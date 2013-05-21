@@ -3,7 +3,21 @@ module Datacash
     class Base < Hash
       include Hashie::Extensions::Coercion
       include Hashie::Extensions::MergeInitializer
-      include Hashie::Extensions::Structure
+
+      def initialize(*args)
+        self.class.keys.each do |key, options|
+          self[key] = options.fetch(:default, nil)
+        end
+        super
+      end
+
+      def self.keys
+        @keys ||= {}
+      end
+
+      def self.key(key, options={})
+        keys[key] = options
+      end
 
       def self.root(name=nil)
         @root = name if name

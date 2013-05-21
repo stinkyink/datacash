@@ -3,11 +3,7 @@ module Datacash
     class Amount < Base
       root 'amount'
 
-      def initialize(*args)
-        self[:amount] = '0.00'
-        self[:currency] = 'GBP'
-        super
-      end
+      key :amount, default: '0.00'
 
       def to_xml(options={})
         xml = options[:builder] ||= Builder::XmlMarkup.new
