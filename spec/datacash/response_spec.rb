@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Datacash::Response do
+describe Datacash::Response::Response do
 
   context "with main response attributes" do
 
@@ -36,12 +36,12 @@ describe Datacash::Response do
 
   describe "#success?" do
     it "should be true if status is set to 1" do
-      subject.status = 1
+      subject[:status] = 1
       subject.should be_success
     end
 
     it "should be false if status is not set to 1" do
-      subject.status = 0
+      subject[:status] = 0
       subject.should_not be_success
     end
   end
