@@ -3,12 +3,9 @@ module Datacash
     class Browser < Base
       root "Browser"
 
-      def initialize(*args)
-        self[:device_category] = 0
-        self[:accept_headers]  = '*/*'
-        self[:user_agent]      = 'Mozilla/5.0'
-        super
-      end
+      key :device_category, default: 0
+      key :accept_headers, default: '*/*'
+      key :user_agent, default: 'Mozilla/5.0'
     end
   end
 end

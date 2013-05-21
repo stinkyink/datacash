@@ -6,11 +6,8 @@ module Datacash
       coerce_key :authentication, Authentication
       coerce_key :transaction, Transaction
 
-      def initialize
-        self[:authentication] = {}
-        self[:transaction] = {}
-        super
-      end
+      key :authentication, default: Authentication.new
+      key :transaction, default: Transaction.new
 
       def add_authentication(options = {})
         self[:authentication] ||= {}

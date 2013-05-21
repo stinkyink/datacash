@@ -2,11 +2,7 @@ module Datacash
   module Request
     class HpsTransaction < Base
       root "HpsTxn"
-
-      def initialize(*args)
-        self[:method] = 'setup_full'
-        super
-      end
+      key :method, default: 'setup_full'
     end
   end
 end
