@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Datacash::Client, "#post" do
     
-
   subject do
     described_class.new(
       client: "TEST",
