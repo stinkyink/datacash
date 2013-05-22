@@ -68,7 +68,9 @@ describe Datacash::Client, "#post" do
     
     it "should return all the elements" do
       response = subject.post(Datacash::Request::Request.new)
-      puts response[:hps_transaction][:auth_attempts][:attempt].length.should eq(2)
+      response.hps_transaction.auth_attempts do |attempt|
+        attempt.should be_a(Datacash::Response::Attempt)
+      end
     end
   end
 end
