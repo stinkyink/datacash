@@ -26,6 +26,15 @@ module Datacash
       end
     end
 
+    def query(datacash_reference)
+      request = Request::Request.new(transaction: {
+        historic_transaction: { 
+          method: "query", reference: datacash_reference
+        }
+      })
+      post(request)
+    end
+
     private
     attr_reader :rest_client, :environment, :client, :password
 
