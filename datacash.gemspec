@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'datacash/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "Datacash"
+  spec.name          = "datacash"
   spec.version       = Datacash::VERSION
   spec.authors       = ["Robert Williams", "Richard Grundy"]
   spec.email         = ["rob@r-williams.com", "richguk@gmail.com"]
