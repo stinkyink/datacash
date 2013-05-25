@@ -1,5 +1,10 @@
 # Datacash
 
+DataCash, a MasterCard Company, is an international provider of credit / 
+debit card processing and industry leading fraud / risk management solutions.
+
+This library provides an idiomatic interface to the DataCash gateway.
+
 ## Configuration
 
 ```ruby
@@ -17,6 +22,9 @@ Datacash.configuration.client = "123456"
 ```
 
 ## Usage
+
+You can play with the library using the console. Run ```rake console```
+then configure using the method above.
 
 ### Query
 
