@@ -3,7 +3,11 @@
 DataCash, a MasterCard Company, is an international provider of credit / 
 debit card processing and industry leading fraud / risk management solutions.
 
-This library provides an idiomatic interface to the DataCash gateway.
+This library provides an idiomatic interface to the DataCash gateway. I would 
+highly recommend reading the DataCash Developers Guide which is available in the
+[Developers Area](https://testserver.datacash.com/software/download.cgi). You will
+will need a [test login](https://testserver.datacash.com/software/integration.shtml)
+to be able to download the developers guide and to play with the gateway.
 
 ## Configuration
 
