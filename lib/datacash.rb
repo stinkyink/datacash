@@ -1,5 +1,6 @@
 require 'date'
 
+require 'gem_config'
 require 'rest_client'
 require 'builder'
 require 'multi_xml'
@@ -10,7 +11,15 @@ require 'hashie/extensions/structure'
 require 'datacash/exceptions'
 
 module Datacash
+  include GemConfig::Base
+
   TIME_FORMAT = '%Y%m%d %H:%M:%S'
+
+  with_configuration do
+    has :client, classes: String
+    has :password, classes: String
+    has :environment, values: [:test, :live], default: :test
+  end
 
   autoload :Client, 'datacash/client'
 

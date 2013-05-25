@@ -7,9 +7,9 @@ module Datacash
     }.freeze
 
     def initialize(options={})
-      @client      = options.fetch(:client)
-      @password    = options.fetch(:password)
-      @environment = options.fetch(:environment, :test)
+      @client      = options.fetch(:client, Datacash.configuration.client)
+      @password    = options.fetch(:password, Datacash.configuration.password)
+      @environment    = options.fetch(:environment, Datacash.configuration.environment)
       @rest_client = options.fetch(:rest_client, RestClient)
     end
 

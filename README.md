@@ -1,46 +1,28 @@
 # Datacash
 
-Please don't use this yet, I'm just coming up with ideas at the moment so please don't consider it production code :)
+## Configuration
 
-## Installation
+```ruby
+# Gemfile
+gem 'datacash'
 
-Add this line to your application's Gemfile:
-
-    gem 'datacash'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install datacash
+# config/initializers/datacash.rb
+Datacash.configure do |config|
+  config.client = "123456"
+  config.password = "password1234"
+  config.environment = :live || :test
+end
+# or
+Datacash.configuration.client = "123456"
+```
 
 ## Usage
 
+### Query
+
 ```ruby
-client = Datacash::Client.new(
-  client: "ABC1234",
-  password: "29389q8iajf",
-  environment: :live
-)
-
-session_request = Datacash::HPSSessionRequest.new(
-  page_set: 0,
-  3d_secure: false,
-  third_man: false,
-  merchant_url: "http://yoursite.com",
-  return_url: "http://yoursite.com/thankyou",
-  expiry_url: "http://yoursite.com/omgtryagain"
-)
-
-response = client.post(session_request) # => Datacash::Response
-
-if response.payment_url
-  # off to the payment url to erm pay
-else
-  "OMG site broke!"
-end
+reference = "3403410491041490149314"
+Datacash::Client.new.query(reference) # => Datacash::Response::Response
 ```
 
 ## Contributing

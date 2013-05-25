@@ -23,6 +23,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activesupport"
   spec.add_dependency "multi_xml", "~> 0.5.3"
   spec.add_dependency "rest-client", "~> 1.6"
+  spec.add_dependency 'gem_config'
+
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
