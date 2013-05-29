@@ -7,8 +7,11 @@ module Datacash
 
       def initialize(attributes = {})
         self.class.keys.each do |key, options|
-          if options.has_key?(:from) && attributes.has_key?(options[:from])
-            attributes[key] = attributes.delete(options[:from])
+          next unless options.has_key?(:from)
+
+          from = options[:from].to_sym
+          if attributes.has_key?(from)
+            attributes[key] = attributes.delete(from)
           end
         end
         super(attributes)
@@ -19,7 +22,7 @@ module Datacash
       end
 
       def self.key(key, options={})
-        keys[key] = options
+        keys[key.to_sym] = options
       end
 
       def success?

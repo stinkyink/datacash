@@ -39,7 +39,7 @@ module Datacash
     attr_reader :rest_client, :environment, :client, :password
 
     def parse_response_to_hash(response)
-      MultiXml.parse(response)["Response"]
+      MultiXml.parse(response, :symbolize_keys => true)[:Response]
     end
 
     def endpoint
