@@ -37,6 +37,7 @@ module Datacash
     autoload :ThreeDSecure,           'datacash/request/three_d_secure'
     autoload :Transaction,            'datacash/request/transaction'
     autoload :TransactionDetails,     'datacash/request/transaction_details'
+    autoload :Thirdman,               'datacash/request/thirdman'
   end
 
   module Response

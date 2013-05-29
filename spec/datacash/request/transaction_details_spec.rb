@@ -21,4 +21,16 @@ describe Datacash::Request::TransactionDetails do
       end
     end
   end
+
+  describe ":thirdman" do
+    context "when set" do
+      before { subject[:thirdman] = {} }
+
+      it "should be a Thirdman instance" do
+        subject[:thirdman].should be_kind_of(
+          Datacash::Request::Thirdman
+        )
+      end
+    end
+  end
 end

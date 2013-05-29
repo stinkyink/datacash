@@ -4,6 +4,7 @@ module Datacash
       root "TxnDetails"
 
       coerce_key :three_d_secure, ThreeDSecure
+      coerce_key :thirdman, Thirdman
     end
   end
 end
