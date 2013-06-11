@@ -1,5 +1,7 @@
 # Datacash
 
+This is an unofficial library!
+
 DataCash, a MasterCard Company, is an international provider of credit / 
 debit card processing and industry leading fraud / risk management solutions.
 

@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Datacash::VERSION
   spec.authors       = ["Robert Williams", "Richard Grundy"]
   spec.email         = ["rob@r-williams.com", "richguk@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = "This library provides an idiomatic interface to the DataCash gateway."
+  spec.summary       = "This library provides an idiomatic interface to the DataCash gateway."
   spec.homepage      = ""
   spec.license       = "MIT"
 
