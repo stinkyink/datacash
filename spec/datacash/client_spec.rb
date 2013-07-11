@@ -41,7 +41,7 @@ describe Datacash::Client, "#post" do
     end
 
     context "response containing an array of elements" do
-      let(:response) do
+      let(:response_data) do
         '<?xml version="1.0" encoding="UTF-8"?>'\
           '<Response>'\
           '<HpsTxn>'\
@@ -64,7 +64,7 @@ describe Datacash::Client, "#post" do
 
       before do 
         stub_request(:post, "https://accreditation.datacash.com/Transaction/cnp_a").
-          to_return(:status => 200, :body => response)
+          to_return(:status => 200, :body => response_data)
       end
 
       it "should return all the elements" do
@@ -72,6 +72,10 @@ describe Datacash::Client, "#post" do
         response.hps_transaction.auth_attempts do |attempt|
           attempt.should be_a(Datacash::Response::Attempt)
         end
+      end
+
+      it 'should store raw response' do
+        subject.post(Datacash::Request::Request.new).raw.should eq(response_data)
       end
     end
   end
@@ -93,7 +97,7 @@ describe Datacash::Client, "#post" do
         '</Request>'
     end
 
-    let(:response) do
+    let(:response_data) do
       '<?xml version="1.0" encoding="UTF-8"?>'\
         '<Response>'\
         '<HpsTxn>'\
@@ -117,8 +121,17 @@ describe Datacash::Client, "#post" do
     it "should send the correct request" do
       stub_request(:post, "https://accreditation.datacash.com/Transaction/cnp_a").
         with(body: request).
-        to_return(:status => 200, :body => response)
+        to_return(:status => 200, :body => response_data)
+
       subject.query("12345")
     end
+
+
+      it 'should store raw response' do
+        stub_request(:post, "https://accreditation.datacash.com/Transaction/cnp_a").
+          to_return(:status => 200, :body => response_data)
+
+        subject.query("12345").raw.should eq(response_data)
+      end
   end
 end

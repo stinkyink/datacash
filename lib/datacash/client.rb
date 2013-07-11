@@ -52,6 +52,7 @@ module Datacash
 
     def handle_response(&block)
       response = Response::Response.new(parse_response_to_hash(yield))
+      response.raw = yield
       if response.reason =~ /invalid client\/pass/i
         raise AuthenticationError, response
       end

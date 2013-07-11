@@ -1,6 +1,8 @@
 module Datacash
   module Response
     class Response < Base
+      attr_accessor :raw
+
       key :query_transaction_result, from: 'QueryTxnResult'
       key :hps_transaction, from: 'HpsTxn'
 
