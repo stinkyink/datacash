@@ -16,14 +16,9 @@ module Datacash
     def post(request)
       prepare_request(request)
 
-      handle_response do 
-        rest_client.post(
-          endpoint,
-          request.to_xml, 
-          content_type: :xml, 
-          accept: :xml
-        )
-      end
+      handle_response(
+        rest_client.post(endpoint, request.to_xml, :content_type => :xml, :accept => :xml)
+      )
     end
 
     def query(datacash_reference)
@@ -50,9 +45,9 @@ module Datacash
       request.add_authentication(client: client, password: password)
     end
 
-    def handle_response(&block)
-      response = Response::Response.new(parse_response_to_hash(yield))
-      response.raw = yield
+    def handle_response(raw_response)
+      response = Response::Response.new(parse_response_to_hash(raw_response))
+      response.raw = raw_response
       if response.reason =~ /invalid client\/pass/i
         raise AuthenticationError, response
       end
