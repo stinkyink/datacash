@@ -6,7 +6,6 @@ require 'builder'
 require 'multi_xml'
 require 'hashie'
 require 'active_support/core_ext/hash/conversions'
-require 'hashie/extensions/structure'
 
 require 'datacash/exceptions'
 
