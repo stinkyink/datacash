@@ -6,7 +6,7 @@ describe Datacash::Request::Transaction do
     subject { MultiXml.parse(described_class.new.to_xml) }
 
     it "should have a root element of 'Transaction'" do
-      subject.should have_key('Transaction')
+      expect(subject).to have_key('Transaction')
     end
   end
 
@@ -15,7 +15,7 @@ describe Datacash::Request::Transaction do
       before { subject[:transaction_details] = {} }
 
       it "should be a TransactionDetails instance" do
-        subject[:transaction_details].should be_kind_of(
+        expect(subject[:transaction_details]).to be_kind_of(
           Datacash::Request::TransactionDetails
         )
       end

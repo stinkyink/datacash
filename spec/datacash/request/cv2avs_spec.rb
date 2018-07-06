@@ -6,7 +6,7 @@ describe Datacash::Request::Cv2Avs do
     subject { MultiXml.parse(described_class.new.to_xml) }
 
     it "should have a root element of 'Cv2Avs'" do
-      subject.should have_key('Cv2Avs')
+      expect(subject).to have_key('Cv2Avs')
     end
   end
 end

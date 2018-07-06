@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Datacash::Client, "#post" do
-    
+
   subject do
     described_class.new(
       client: "TEST",
@@ -29,7 +29,7 @@ describe Datacash::Client, "#post" do
           '</Response>'
       end
 
-      before do 
+      before do
         stub_request(:post, "https://accreditation.datacash.com/Transaction/cnp_a").
           with(body: request).
           to_return(:status => 200, :body => response)
@@ -62,7 +62,7 @@ describe Datacash::Client, "#post" do
           '</Response>'
       end
 
-      before do 
+      before do
         stub_request(:post, "https://accreditation.datacash.com/Transaction/cnp_a").
           to_return(:status => 200, :body => response_data)
       end
@@ -70,12 +70,12 @@ describe Datacash::Client, "#post" do
       it "should return all the elements" do
         response = subject.post(Datacash::Request::Request.new)
         response.hps_transaction.auth_attempts do |attempt|
-          attempt.should be_a(Datacash::Response::Attempt)
+          expect(attempt).to be_a(Datacash::Response::Attempt)
         end
       end
 
       it 'should store raw response' do
-        subject.post(Datacash::Request::Request.new).raw.should eq(response_data)
+        expect(subject.post(Datacash::Request::Request.new).raw).to eq(response_data)
       end
     end
   end
@@ -131,7 +131,7 @@ describe Datacash::Client, "#post" do
         stub_request(:post, "https://accreditation.datacash.com/Transaction/cnp_a").
           to_return(:status => 200, :body => response_data)
 
-        subject.query("12345").raw.should eq(response_data)
+        expect(subject.query("12345").raw).to eq(response_data)
       end
   end
 end

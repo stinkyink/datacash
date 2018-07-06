@@ -6,11 +6,11 @@ describe Datacash::Request::HistoricTransaction do
     subject { MultiXml.parse(described_class.new.to_xml) }
 
     it "should have a root element of 'CardTxn'" do
-      subject.should have_key('HistoricTxn')
+      expect(subject).to have_key('HistoricTxn')
     end
   end
 
   it "should have defaults" do
-    subject[:method].should eq('query')
+    expect(subject[:method]).to eq('query')
   end
 end

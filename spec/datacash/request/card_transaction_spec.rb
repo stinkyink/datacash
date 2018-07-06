@@ -6,12 +6,12 @@ describe Datacash::Request::CardTransaction do
     subject { MultiXml.parse(described_class.new.to_xml) }
 
     it "should have a root element of 'CardTxn'" do
-      subject.should have_key('CardTxn')
+      expect(subject).to have_key('CardTxn')
     end
   end
 
   it "should have defaults" do
-    subject[:method].should eq('auth')
+    expect(subject[:method]).to eq('auth')
   end
 
   describe ":card" do
@@ -19,7 +19,7 @@ describe Datacash::Request::CardTransaction do
       before { subject[:card] = {} }
 
       it "should be an Card instance" do
-        subject[:card].should be_kind_of(
+        expect(subject[:card]).to be_kind_of(
           Datacash::Request::Card
         )
       end

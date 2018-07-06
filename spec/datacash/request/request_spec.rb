@@ -6,7 +6,7 @@ describe Datacash::Request::Request do
     subject { MultiXml.parse(described_class.new.to_xml) }
 
     it "should have a root element of 'Request'" do
-      subject.should have_key('Request')
+      expect(subject).to have_key('Request')
     end
   end
 
@@ -15,7 +15,7 @@ describe Datacash::Request::Request do
       before { subject[:authentication] = {} }
 
       it "should be an Authentication instance" do
-        subject[:authentication].should be_kind_of(
+        expect(subject[:authentication]).to be_kind_of(
           Datacash::Request::Authentication
         )
       end
@@ -27,7 +27,7 @@ describe Datacash::Request::Request do
       before { subject[:transaction] = {} }
 
       it "should be an Authentication instance" do
-        subject[:transaction].should be_kind_of(
+        expect(subject[:transaction]).to be_kind_of(
           Datacash::Request::Transaction
         )
       end
@@ -42,8 +42,8 @@ describe Datacash::Request::Request do
       end
 
       it "should add authentication to the request" do
-        subject[:authentication][:client].should eq("FRED")
-        subject[:authentication][:password].should eq("PASSWORD123")
+        expect(subject[:authentication][:client]).to eq("FRED")
+        expect(subject[:authentication][:password]).to eq("PASSWORD123")
       end
     end
 

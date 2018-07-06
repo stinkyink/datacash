@@ -6,7 +6,7 @@ describe Datacash::Request::Thirdman do
     subject { MultiXml.parse(described_class.new.to_xml) }
 
     it "should have a root element of 'The3rdMan'" do
-      subject.should have_key('The3rdMan')
+      expect(subject).to have_key('The3rdMan')
     end
   end
 end

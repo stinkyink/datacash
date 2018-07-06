@@ -6,12 +6,12 @@ describe Datacash::Request::ThreeDSecure do
     subject { MultiXml.parse(described_class.new.to_xml) }
 
     it "should have a root element of 'ThreeDSecure'" do
-      subject.should have_key('ThreeDSecure')
+      expect(subject).to have_key('ThreeDSecure')
     end
   end
 
   it "should have defaults" do
-    subject[:verify].should eq('yes')
-    subject[:purchase_desc].should eq('goods')
+    expect(subject[:verify]).to eq('yes')
+    expect(subject[:purchase_desc]).to eq('goods')
   end
 end

@@ -6,11 +6,11 @@ describe Datacash::Request::HpsTransaction do
     subject { MultiXml.parse(described_class.new.to_xml) }
 
     it "should have a root element of 'CardTxn'" do
-      subject.should have_key('HpsTxn')
+      expect(subject).to have_key('HpsTxn')
     end
   end
 
   it "should have defaults" do
-    subject[:method].should eq('setup_full')
+    expect(subject[:method]).to eq('setup_full')
   end
 end
