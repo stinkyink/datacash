@@ -19,6 +19,8 @@ module Datacash
       handle_response(
         rest_client.post(endpoint, request.to_xml, :content_type => :xml, :accept => :xml)
       )
+    rescue RestClient::ResourceNotFound, SocketError, Errno::ECONNREFUSED => e
+      raise Datacash::ConnectionError.new(e)
     end
 
     def query(datacash_reference)
@@ -46,7 +48,13 @@ module Datacash
     end
 
     def handle_response(raw_response)
-      response = Response::Response.new(parse_response_to_hash(raw_response))
+      parsed_xml_response = parse_response_to_hash(raw_response)
+
+      if raw_response.blank? || parsed_xml_response.blank?
+        raise Datacash::ResponseError.new("Response was empty: #{raw_response}")
+      end
+
+      response = Response::Response.new(parsed_xml_response)
       response.raw = raw_response
       if response.reason =~ /invalid client\/pass/i
         raise AuthenticationError, response
